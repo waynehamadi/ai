@@ -1,5 +1,19 @@
 # ai
 
+## 7.0.174
+
+### Patch Changes
+
+- fab7478: Fix locked stream errors when telemetry subscribers or integrations replace a model stream whose request or response metadata requires credential redaction.
+- 718824c: Prevent excessive memory and CPU usage when validating UI messages with deeply nested provider or tool metadata. `validateUIMessages`, `safeValidateUIMessages`, and the agent UI stream helpers validated JSON values in `providerMetadata`, `callProviderMetadata`, `resultProviderMetadata`, `toolMetadata`, and citation metadata with a recursive union schema that needed several times the memory of the value, so a valid request could exhaust the memory of a worker before the model was called. These values are now validated in a single pass and are no longer copied, except to remove `__proto__` keys.
+- d99098a: Centralize empty extraction value normalization in `experimental_extract`, preserving missing-value behavior while removing duplicated conversion from extraction providers.
+- Updated dependencies [74042c5]
+- Updated dependencies [b8c01eb]
+- Updated dependencies [e878ab3]
+- Updated dependencies [d99098a]
+  - @ai-sdk/gateway@4.0.147
+  - @ai-sdk/provider-utils@5.0.82
+
 ## 7.0.173
 
 ### Patch Changes
